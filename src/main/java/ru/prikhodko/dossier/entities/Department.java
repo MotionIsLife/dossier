@@ -5,22 +5,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity(name = "Book")
-public class Book {
+@Entity(name = "Department")
+public class Department {
+
     @Id
     @GeneratedValue
     private Long id;
 
-    private String title;
-
-    private String author;
+    private String name;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "library_id")
     private Library library;
 
-    public Book() {
+    public Department() {
     }
 
     public Long getId() {
@@ -31,20 +30,12 @@ public class Book {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Library getLibrary() {
@@ -58,13 +49,13 @@ public class Book {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Book)) return false;
-        Book book = (Book) o;
-        return Objects.equals(id, book.id) && Objects.equals(title, book.title) && Objects.equals(author, book.author);
+        if (!(o instanceof Department)) return false;
+        Department that = (Department) o;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, author);
+        return Objects.hash(id, name);
     }
 }

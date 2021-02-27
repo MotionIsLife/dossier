@@ -27,7 +27,10 @@ public class LibraryController {
 
     @GetMapping
     public List<Library> findAll() {
-        return libraryService.findAll();
+        Long start = System.currentTimeMillis();
+        List<Library> libraries = libraryService.findAll();
+        System.out.println(System.currentTimeMillis() - start);
+        return libraries;
     }
 
 }
